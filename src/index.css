@@ -11,3 +11,128 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+}
+.petsBoard{
+  display: block;
+  position: relative;
+  margin-left: 10px;
+  padding-bottom: 60px;
+}
+.animalCard{
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  display: inline-block;
+  width: 43%;
+  position: relative;
+  margin: 10px;
+}
+.animalCard > article{
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 7px #B6CFFF;
+  max-width: 150px;
+  text-decoration: none;
+  padding-bottom: 10px;
+}
+.animalCard figure{
+  overflow: hidden;
+  width: 100%;
+  height: 120px;
+  border-radius: 10px 10px 0px 0px;
+
+}
+.animalCard figure > img{
+  width: 100%;
+  height: auto;
+}
+
+.animalCard h3{
+  font-size: 18px;
+  margin: 6px 0px 6px 15px;
+}
+
+.animalCard h4{
+  font-size: 12px;
+  margin-left: 15px;
+}
+
+.animalCard .animalGender{
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+  fill: #B6CFFF;
+}
+
+.animalCard .animalGender img{
+  fill: #B6CFFF;
+}
+
+/* Type of animal filter */
+
+.animalFilter{
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.animalFilter button{
+  appearance: none;
+  border-radius: 10px;
+  border: 2px solid #0D4FD0;
+  color: #0D4FD0;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 10px;
+  margin-right: 8px;
+}
+
+.animalFilter button.active{
+  background-color: #0D4FD0;
+  color: #ffffff;
+}
+
+header{
+  background-color: #0D4FD0;
+  height: 50px;
+  box-shadow: 0 7px 7px #B6CFFF;
+}
+
+header img{
+  width: 90px;
+  height: auto;
+  margin: 10px 20px;
+}
+
+nav{
+  background-color: #0D4FD0;
+  height: 60px;
+  width: 100%;
+  padding: 15px 40px;
+  position: fixed;
+  bottom: 0px;
+  box-shadow: 0 -7px 7px rgba(99, 88, 126, 0.7);
+  
+}
+nav a{
+  padding: 10px 22px;
+  position: relative;
+}
+
+nav a.active::after{
+  content: " ";
+  width: 50px;
+  height: 6px;
+  border-radius: 3px 3px 0px 0px;
+  background-color: #ffffff;
+  position: absolute;
+  bottom: -4px;
+  left: 11px;
+}

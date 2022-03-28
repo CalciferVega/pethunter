@@ -81,7 +81,7 @@ export const pets = [
         about: "Mochi is a beautiful Arabian gelding. He was taken from his owner when they could no longer care for him. He has had lots of groundwork training. He will ground drive and accepts a saddle. He can be trained to ride.",
         likeDogs: true,
         likeCats: true,
-        photos: ["/pets/1234-01.jpg", "/pets/1234-02.jpg", "/pets/1234-03.jpg"],
+        photos: ["/pets/1234-01.png", "/pets/1234-02.png", "/pets/1234-03.png"],
         sterilized: true,
         vaccinated: true
     },
@@ -97,7 +97,7 @@ export const pets = [
         about: "Compi is a beautiful Arabian gelding. He was taken from his owner when they could no longer care for him. He has had lots of groundwork training. He will ground drive and accepts a saddle. He can be trained to ride.",
         likeDogs: false,
         likeCats: true,
-        photos: ["/pets/1235-01.jpg", "/pets/1235-02.jpg", "/pets/1235-03.jpg"],
+        photos: ["/pets/1235-01.png", "/pets/1235-02.png", "/pets/1235-03.png"],
         sterilized: true,
         vaccinated: false
     },
@@ -113,7 +113,7 @@ export const pets = [
         about: "Michi is a beautiful Arabian gelding. He was taken from his owner when they could no longer care for him. He has had lots of groundwork training. He will ground drive and accepts a saddle. He can be trained to ride.",
         likeDogs: false,
         likeCats: false,
-        photos: ["/pets/1236-01.jpg", "/pets/1236-02.jpg", "/pets/1236-03.jpg"],
+        photos: ["/pets/1236-01.png", "/pets/1236-02.png", "/pets/1236-03.png"],
         sterilized: true,
         vaccinated: true
     },
@@ -129,7 +129,7 @@ export const pets = [
         about: "Nero is a beautiful Arabian gelding. He was taken from his owner when they could no longer care for him. He has had lots of groundwork training. He will ground drive and accepts a saddle. He can be trained to ride.",
         likeDogs: false,
         likeCats: false,
-        photos: ["/pets/1237-01.jpg", "/pets/1237-02.jpg", "/pets/1237-03.jpg"],
+        photos: ["/pets/1237-01.png", "/pets/1237-02.png", "/pets/1237-03.png"],
         sterilized: true,
         vaccinated: true
     },
@@ -145,9 +145,27 @@ export const pets = [
         about: "La pelusa is a beautiful Arabian gelding. He was taken from his owner when they could no longer care for him. He has had lots of groundwork training. He will ground drive and accepts a saddle. He can be trained to ride.",
         likeDogs: true,
         likeCats: false,
-        photos: ["/pets/1237-01.jpg", "/pets/1237-02.jpg", "/pets/1237-03.jpg"],
+        photos: ["/pets/1237-01.png", "/pets/1237-02.png", "/pets/1237-03.png"],
+        sterilized: true,
+        vaccinated: true
+    },
+    {  
+        id: 1239, 
+        ownerId: 1005252333,
+        typePet: "Dog",
+        name: "Nube",
+        age: 10,
+        gender: "female",
+        state: 19,
+        city: "Monterrey",
+        about: "Nube is a beautiful Arabian gelding. He was taken from his owner when they could no longer care for him. He has had lots of groundwork training. He will ground drive and accepts a saddle. He can be trained to ride.",
+        likeDogs: true,
+        likeCats: false,
+        photos: ["/pets/1239-01.png", "/pets/1239-02.png", "/pets/1237-03.png"],
         sterilized: true,
         vaccinated: true
     }
 
 ];
+
+export default pets;

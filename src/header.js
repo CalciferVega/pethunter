@@ -2,13 +2,9 @@
 function Header(){
     return (
     <header>
-      <img src='/img/logoapp.png'></img>
-      <a href='#'>
-        btn buscar
-      </a>
-      <a href='#'>
-        btn mi perfil
-      </a>
+        < a href="">
+            <img src='/assets/logoapp.png'></img>
+        </a>
     </header>
     )
     }

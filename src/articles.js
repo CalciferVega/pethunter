@@ -1,9 +1,10 @@
 import React from 'react';
 
 const AnimalCard =({id, age, name, gender, photos}) =>{
+
     return (
-    <a href={id}>
-      <article className='animalCard'>
+    <a href={id} className='animalCard'>
+      <article >
         <figure>
           <img src={photos[0]}/>
         </figure>
@@ -13,7 +14,7 @@ const AnimalCard =({id, age, name, gender, photos}) =>{
         </div>
         <div>
           <span className='animalGender'>
-            {gender}
+            <img src="/assets/male_black_24dp.svg"/>
           </span>
         </div>
       </article>

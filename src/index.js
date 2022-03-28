@@ -1,30 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {pets} from './dataSet';
+import AnimalCard from './articles';
+import Header from './header';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Header />
+    <TypeAnimal />
+    <BoardPet></BoardPet>
+    <Navbar />
   </React.StrictMode>,
   document.getElementById('root')
 );
 
-function Header(){
- return (
- <header>
-   <img src='/img/logoapp.png'></img>
-   <a href='#'>
-     btn buscar
-   </a>
-   <a href='#'>
-     btn mi perfil
-   </a>
- </header>
- )
- }
-
+function BoardPet(){
+  return (
+    <section className='petsBoard'>
+      {pets.map((pet) => {
+        return <AnimalCard key={pet.id} {...pet}></AnimalCard> 
+      })}
+    </section>
+  )
+}
 function Board(){
 return (
   <div className='carrusel'>
@@ -49,30 +49,11 @@ return (
 function TypeAnimal(){
   return (
     <section className='animalFilter'>
-      <button>Gatos</button>
-      <button>Perros</button>
-      <button>Conejos</button>
-      <button>Caballos</button>
+      <button className='active' dataPet="cat">Gatos</button>
+      <button dataPet="dog">Perros</button>
+      <button dataPet="rabbit">Conejos</button>
+      <button dataPet="horse">Caballos</button>
     </section>
-  )
-}
-
-function AnimalCard(){
-  return (
-    <article className='animalCard'>
-      <figure>
-        <img src="#"/>
-      </figure>
-      <h3>AnimalName</h3>
-      <div>
-        <h4>AnimalAge</h4>
-      </div>
-      <div>
-        <span className='animalGender'>
-          AnimalGender
-        </span>
-      </div>
-    </article>
   )
 }
 
@@ -80,16 +61,16 @@ function Navbar(){
   return (
     <nav>
       <a href='#' className='barOption active'>
-        <img src="/img/home.svg" />
+        <img src="/assets/home.svg" />
       </a>
       <a href='#' className='barOption'>
-        <img src="/img/menu.svg" />
+        <img src="/assets/menu.svg" />
       </a>
       <a href='#' className='barOption'>
-        <img src="/img/profile.svg" />
+        <img src="/assets/profile.svg" />
       </a>
       <a href='#' className='barOption'>
-        <img src="/img/wishlist.svg" />
+        <img src="/assets/favorite.svg" />
       </a>
     </nav>
   )
