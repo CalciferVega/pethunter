@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AnimalCard =({id, age, name, gender, photos}) =>{
-
+  let genderImg = `/assets/${gender}_black_24dp.svg`;
     return (
-    <a href={id} className='animalCard'>
+    <Link  to={'pet/' + id} className='animalCard'>
       <article >
         <figure>
           <img src={photos[0]}/>
@@ -14,11 +15,11 @@ const AnimalCard =({id, age, name, gender, photos}) =>{
         </div>
         <div>
           <span className='animalGender'>
-            <img src="/assets/male_black_24dp.svg"/>
+            <img src={genderImg}/>
           </span>
         </div>
       </article>
-    </a>
+    </Link>
     )
     }
  export default AnimalCard;
