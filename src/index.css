@@ -141,6 +141,8 @@ nav a.active::after{
 }
 .MuiButton-root.PetCompo{
   padding: 12px 16px;
+  margin-bottom: 100px;
+  font-weight: 700;
 }
 
 /* PET POST STYLES*/

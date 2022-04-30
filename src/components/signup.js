@@ -29,8 +29,10 @@ const SignUpPage =({}) =>{
     }
     return (
         <Box sx={{ width: '100%' }}>
+            
             <form className='formulary'>
                 <Stack spacing={2}>
+                    <h2>Regístrate</h2>
                     <TextField id="email" name="email" label="Correo electrónico" variant="outlined" onChange={event => handleInput(event)}/>
                     <TextField id="outlined-password-input" name="password" label="Contraseña" type="password" onChange={event => handleInput(event)}/>
                     <Button variant="contained" className="PetCompo" onClick={event => handleSubmit(event)}>Registrate</Button>

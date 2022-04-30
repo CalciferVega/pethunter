@@ -1,10 +1,10 @@
-
+import { Link } from 'react-router-dom';
 function Header(){
     return (
     <header>
-        < a href="">
+        <Link to="/">
             <img src='/assets/logoapp.png'></img>
-        </a>
+        </Link>
     </header>
     )
     }
