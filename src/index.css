@@ -22,7 +22,8 @@ body {
   background-color: white;
 }
 .petsBoard{
-  display: block;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   position: relative;
   margin-left: 10px;
   padding-bottom: 60px;
@@ -32,22 +33,22 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   color: black;
   display: inline-block;
-  width: 43%;
+  width: 100%;
   position: relative;
-  margin: 10px;
+  margin-bottom: 30px;
 }
 .animalCard > article{
   background-color: white;
   border-radius: 10px;
+  width: 90%;
   box-shadow: 0 0 7px #B6CFFF;
-  max-width: 150px;
   text-decoration: none;
   padding-bottom: 10px;
 }
 .animalCard figure{
   overflow: hidden;
   width: 100%;
-  height: 120px;
+  height: 150px;
   border-radius: 10px 10px 0px 0px;
 
 }
@@ -67,9 +68,11 @@ body {
 }
 
 .animalCard .animalGender{
-  position: absolute;
-  right: 15px;
-  bottom: 10px;
+  position: relative;
+  left: 5px;
+  top: 3px;
+  width: 20px;
+  height: 20px;
   fill: #B6CFFF;
 }
 
@@ -80,8 +83,9 @@ body {
 /* Type of animal filter */
 
 .animalFilter{
-  margin-left: 20px;
-  margin-top: 20px;
+  margin-left: 1.3rem;
+  margin-top: 1rem;
+  margin-bottom: 1.8rem;
 }
 .animalFilter button{
   appearance: none;
@@ -112,11 +116,17 @@ header img{
 
 nav{
   background-color: #0D4FD0;
-  height: 60px;
-  width: 100%;
-  padding: 15px 40px;
-  position: fixed;
-  bottom: 0px;
+    display: flex;
+    margin: 0 auto;
+    height: 60px;
+    width: 100%;
+    padding: 15px 40px;
+    position: fixed;
+    bottom: -1px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
 }
 nav a{
   padding: 10px 22px;
@@ -155,4 +165,47 @@ nav a.active::after{
 .petPost figure img{
   width: 100%;
   height: auto;
+}
+.aboutPet{
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+.aboutPet .title{
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+.aboutPet .petCity{
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 0 10px 0;
+  border-top: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
+}
+.aboutPet h3{
+  margin-bottom: 10px;
+}
+.aboutPet p{
+  font-size: 1rem;
+  margin-top: 10px;
+}
+@media (max-width: 768px){
+  .animalCard figure{
+    height: 250px;
+  }
+  .petsBoard{
+    margin-left: 30px;
+  }
+  header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+  }
+   header img{
+    width: 7.5rem;
+    margin: 10px 20px;
+  }
 }

@@ -8,6 +8,7 @@ import Alert from '@mui/material/Alert';
 import Divider from '@mui/material/Divider';
 import { app } from "../firebaseConfig"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import Navbar from './navbar';
 
 const SignUpPage =({}) =>{
     let auth = getAuth();
@@ -41,7 +42,7 @@ const SignUpPage =({}) =>{
                     <Button variant="outlined" className="PetCompo">Registarte con Facebook</Button>
                 </Stack>
             </form>
-
+            <Navbar/>
         </Box>
     )
 }

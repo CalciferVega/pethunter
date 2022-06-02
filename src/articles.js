@@ -7,16 +7,13 @@ const AnimalCard =({id, age, name, gender, photos}) =>{
     <Link  to={'pet/' + id} className='animalCard'>
       <article >
         <figure>
-          <img src={photos[0]}/>
+          <img src={photos !== undefined ? photos[0] : '/pets/1237-01.png'}/>
         </figure>
-        <h3>{name}</h3>
+        <h3>{name} 
+          <img className='animalGender' src={genderImg}/>
+        </h3>
         <div>
           <h4>{age} años</h4>
-        </div>
-        <div>
-          <span className='animalGender'>
-            <img src={genderImg}/>
-          </span>
         </div>
       </article>
     </Link>

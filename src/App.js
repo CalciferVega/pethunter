@@ -22,7 +22,7 @@ function App() {
           <Route exact path='/agregamascota' element={ <AddPet />} />
           <Route exact path="/" element={<Home/>}  />
         </Routes>
-        <Navbar/>
+        
 
     </BrowserRouter>
 

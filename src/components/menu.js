@@ -4,6 +4,7 @@ import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import LoginPage from './login'
 import AddPet from './addPet'
+import Navbar from './navbar'
 
 function Menu(){
     return(
@@ -17,6 +18,7 @@ function Menu(){
                     Agrega una mascota
                 </Link>
             </Stack>
+            <Navbar/>
         </Box>
     )
 }

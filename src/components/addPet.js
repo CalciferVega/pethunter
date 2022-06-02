@@ -20,6 +20,7 @@ import { styled } from '@mui/material/styles';
 import { app } from "../firebaseConfig"
 import { collection, addDoc, getFirestore } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { Navigate } from 'react-router-dom';
 
 
 const Input = styled('input')({
