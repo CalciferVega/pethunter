@@ -5,18 +5,53 @@ import Divider from '@mui/material/Divider';
 import LoginPage from './login'
 import AddPet from './addPet'
 import Navbar from './navbar'
+import MyArticles from './myarticles'
+import { Button } from '@mui/material';
+import { app } from "../firebaseConfig"
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useEffect, useState } from 'react';
 
-function Menu(){
+const Menu = function(){
+    let auth = getAuth();
+    let authToken = sessionStorage.getItem('Auth Token')
+    let [logged, setLogin] = useState(false);
+    
+    const handleLogout = () => {
+        auth.signOut().then(() => {
+            sessionStorage.removeItem('Auth Token');
+            window.location.assign('/iniciosesion')
+        });
+    }
+
+    useEffect(() => {
+        
+        if (authToken) {
+            logged = true;
+            console.log(logged)
+        }
+
+        if (!authToken) {
+            //window.location.assign('/iniciosesion')
+        }
+    }, [])
+
+
     return(
         <Box sx={{ width: '100%' }}>
             <Stack spacing={2}>
-                <Link  to='/iniciosesion' element={<LoginPage/>}>
-                    Iniciar sesión
-                </Link>
+                
                 <Divider light/>
-                <Link  to='/agregamascota' element={<AddPet/>}>
+                { authToken ? <Link  to='/agregamascota' element={<AddPet/>}>
                     Agrega una mascota
-                </Link>
+                </Link> : <Link  to='/iniciosesion' element={<LoginPage/>}>
+                    Iniciar sesión
+                </Link> }
+                { authToken ? <Link  to='/mis-publicaciones' element={<MyArticles/>}>
+                    Mis publicaciones
+                </Link> : null }
+                { authToken ? <Button variant="contained" color="primary" onClick={handleLogout}> Cerrar sesión </Button> : null }
+                
+
             </Stack>
             <Navbar/>
         </Box>

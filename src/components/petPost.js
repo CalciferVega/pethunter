@@ -1,5 +1,9 @@
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { useState, useEffect } from 'react';
+import PetsIcon from '@mui/icons-material/Pets';
+import { Link } from "react-router-dom";
+import  AdoptPage  from './Adopt';
+
 function Petpost() {
   let pathNav = window.location.pathname;
   let petId = pathNav.slice(5, pathNav.length);
@@ -9,6 +13,8 @@ function Petpost() {
   const db = getFirestore();
   const c = doc(db, "pets", petId);
   const petData = getDoc(c);
+  let authToken = sessionStorage.getItem('Auth Token');
+
 
   useEffect(() => {
     const getPet = async function () {
@@ -22,7 +28,6 @@ function Petpost() {
     console.log(pet);
   }
     , [])
-
   //let myData = filterById(pets, petId)
   let genderImg = `/assets/${pet.gender}_black_24dp.svg`;
   return (
@@ -42,6 +47,9 @@ function Petpost() {
         <h4 className='title'>Sobre mi</h4>
         <p>{pet.about}</p>
       </section>
+      { authToken ?
+        <Link to={`/adopt/${petId}`} element={<AdoptPage/>} className="btn-adopt" variant="contained" > <PetsIcon/> Quiero Adoptar </Link>
+      : <Link to={`/iniciosesion`} className="btn-adopt" variant="contained" > <PetsIcon/> Quiero Adoptar </Link>}
     </div>
   )
 }

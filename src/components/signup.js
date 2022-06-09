@@ -28,6 +28,10 @@ const SignUpPage =({}) =>{
             alert(err.message);
         })
     }
+    const handleClick = (event) =>{
+        event.preventDefault();
+        window.location.href = '/iniciosesion';
+    }
     return (
         <Box sx={{ width: '100%' }}>
             
@@ -38,6 +42,7 @@ const SignUpPage =({}) =>{
                     <TextField id="outlined-password-input" name="password" label="Contraseña" type="password" onChange={event => handleInput(event)}/>
                     <Button variant="contained" className="PetCompo" onClick={event => handleSubmit(event)}>Registrate</Button>
                     <Divider light />
+                    <Button variant="outlined" className="PetCompo" onClick={event => handleClick(event)}>Iniciar sesión</Button>
                     <Button variant="outlined" className="PetCompo">Registarte con Google</Button>
                     <Button variant="outlined" className="PetCompo">Registarte con Facebook</Button>
                 </Stack>

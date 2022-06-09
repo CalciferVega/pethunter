@@ -29,7 +29,10 @@ const Input = styled('input')({
 
 
 const AddPet = ({ }) => {
-    const [data, setData] = useState({});
+    let authToken = sessionStorage.getItem('Auth Token');
+    let userID = sessionStorage.getItem('User Id');
+
+    const [data, setData] = useState({'uid' : userID});
     const [gender, setGender] = React.useState('');
     const [city, setCity] = React.useState('');
     const [open, setOpen] = React.useState(false);
@@ -93,8 +96,10 @@ const AddPet = ({ }) => {
             setData({ ...data, ...defType });
         }
 
-        await addDoc(collection(db, "pets"), data);
-        console.log(data);
+        await addDoc(collection(db, "pets"), data)
+        .then( console.log(data))
+        .then(handleCall( "Se ha agregado tu mascota", 'success'))
+        .then( setTimeout(function() {window.location.assign('/')}, 5000));
     }
 
     //     
