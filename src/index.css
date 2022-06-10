@@ -223,26 +223,48 @@ nav a.active::after {
   align-items: center;
 }
 
-.btn-adopt .MuiSvgIcon-root{
+.btn-adopt .MuiSvgIcon-root {
   margin-right: 10px;
 }
 
-.adoptPage p, .adoptPage h1{
+.adoptPage p,
+.adoptPage h1 {
   padding: 1rem 1rem;
 }
 
-.myarticles{
+.myarticles {
   padding: 1rem;
 }
 
-.myarticles p{
+.myarticles p {
   padding-bottom: 1rem;
 }
 
-.myarticles h1{
+.myarticles h1 {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
+}
+
+.mypetscard {
+  position: relative;
+}
+
+button.delete {
+  background-color: #ffd6d6;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  width: 6rem;
+  height: 2.5rem;
+  margin-bottom: 10px;
+  border-radius: 1rem;
+  position: absolute;
+  bottom: 1.8rem;
+  right: 2.6rem;
+  z-index: 99;
 }
 
 @media (max-width: 768px) {

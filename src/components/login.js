@@ -44,7 +44,7 @@ const LoginPage =({}) =>{
                 <h2>Inicio de sesión</h2>
                     <TextField id="email" name="email" label="Correo electrónico" variant="outlined" onChange={event => handleInput(event)}/>
                     <TextField id="outlined-password-input" name="password" label="Contraseña" type="password" onChange={event => handleInput(event)}/>
-                    <Button variant="contained" className="PetCompo" onClick={event => handleSubmit(event)}>Registrate</Button>
+                    <Button variant="contained" className="PetCompo" onClick={event => handleSubmit(event)}>Iniciar sesión</Button>
                     <Divider light />
                 </Stack>
             </form>
