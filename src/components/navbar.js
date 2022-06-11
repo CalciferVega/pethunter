@@ -24,7 +24,7 @@ function Navbar() {
       <Link to="/registro" className={`${isActive('/registro', pathname)}`}>
         <img src="/assets/profile.svg" />
       </Link>
-      <Link to="/favorite" className={`${isActive('/favorite', pathname)}`}>
+      <Link to="/favoritos" className={`${isActive('/favoritos', pathname)}`}>
         <img src="/assets/favorite.svg" />
       </Link>
     </nav>

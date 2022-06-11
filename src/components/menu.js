@@ -8,33 +8,19 @@ import Navbar from './navbar'
 import MyArticles from './myarticles'
 import { Button } from '@mui/material';
 import { app } from "../firebaseConfig"
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 
 const Menu = function(){
     let auth = getAuth();
     let authToken = sessionStorage.getItem('Auth Token')
-    let [logged, setLogin] = useState(false);
-    
+
     const handleLogout = () => {
         auth.signOut().then(() => {
             sessionStorage.removeItem('Auth Token');
             window.location.assign('/iniciosesion')
         });
     }
-
-    useEffect(() => {
-        
-        if (authToken) {
-            logged = true;
-            console.log(logged)
-        }
-
-        if (!authToken) {
-            //window.location.assign('/iniciosesion')
-        }
-    }, [])
-
 
     return(
         <Box sx={{ width: '100%' }}>

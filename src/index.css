@@ -42,7 +42,7 @@ body {
 
 .animalCard>article {
   background-color: white;
-  border-radius: 10px;
+  border-radius: 20px;
   width: 90%;
   box-shadow: 0 0 7px #B6CFFF;
   text-decoration: none;
@@ -64,12 +64,12 @@ body {
 
 .animalCard h3 {
   font-size: 18px;
-  margin: 6px 0px 6px 15px;
+  margin: 6px 0px 6px 20px;
 }
 
 .animalCard h4 {
   font-size: 12px;
-  margin-left: 15px;
+  margin-left: 20px;
 }
 
 .animalCard .animalGender {
@@ -84,7 +84,9 @@ body {
 .animalCard .animalGender img {
   fill: #B6CFFF;
 }
-
+.petsCard{
+  position: relative;
+}
 /* Type of animal filter */
 
 .animalFilter {
@@ -133,6 +135,7 @@ nav {
   align-items: center;
   flex-wrap: nowrap;
   flex-direction: row;
+  z-index: 999;
 }
 
 nav a {
@@ -266,7 +269,23 @@ button.delete {
   right: 2.6rem;
   z-index: 99;
 }
+.favorite{
+    position: absolute;
+    top: 1rem;
+    right: 3.6rem;
+    background: #ffffff;
+    border: transparent;
+    padding: 6px;
+    border-radius: 20px;
+    box-shadow: rgb(174, 174, 174) 0px 0px 5px;
+    z-index: 2;
+}
 
+.favorite .MuiSvgIcon-root{
+    fill: #FFACAC;
+    position: relative;
+    top: 2px;
+}
 @media (max-width: 768px) {
   .animalCard figure {
     height: 250px;

@@ -1,9 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
-const AnimalCard =({id, age, name, gender, photos}) =>{
+
+
+const AnimalCard =({id, age, name, gender, photos, handleFavorite}) =>{
   let genderImg = `/assets/${gender}_black_24dp.svg`;
+  let authToken = sessionStorage.getItem('Auth Token');
+  
     return (
+      <section className='petsCard'>
     <Link  to={'pet/' + id} className='animalCard'>
       <article >
         <figure>
@@ -17,6 +24,8 @@ const AnimalCard =({id, age, name, gender, photos}) =>{
         </div>
       </article>
     </Link>
+    { authToken ? <button className='favorite' onClick={() => handleFavorite(id)}><FavoriteBorderIcon/></button> : null}
+    </section>
     )
     }
  export default AnimalCard;

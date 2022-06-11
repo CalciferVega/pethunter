@@ -1,15 +1,59 @@
 import React from 'react';
 import AnimalCard from '../articles';
 import { useState, useEffect } from 'react';
-import { collection, query, getDocs, limitToLast, getFirestore, orderBy, doc } from "firebase/firestore";
+import { collection, query, where, getDocs, limitToLast, getFirestore, orderBy, doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
 import { async } from '@firebase/util';
 import Navbar from './navbar'
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 function Home() {
     const [pets2, setPets] = useState([]);
     const db = getFirestore();
     const c = collection(db, "pets")
+    const users = collection(db, "users");
+    let authToken = sessionStorage.getItem('Auth Token');
+    let uid = sessionStorage.getItem('User Id');
 
+
+    // 1. If user clicks on favorite icon, add pet to favorites.
+    // 2. If user clicks on favorite border icon, remove pet from favorites.
+    // 3. If user clicks on favorite border icon, add pet to favorites.
+
+
+    async function handleFavorite(id){
+        let ref = doc(db, 'users', uid);
+
+        await getDoc(ref)
+        .then((response) => {
+            let favorites = response?.data()?.myFavorites;
+            
+            
+            if(favorites === undefined){
+                let firstFavorite = {myFavorites : [id]};
+
+                setDoc(ref, firstFavorite)
+            
+            }
+
+            if(favorites?.find(pet => pet === id)){
+                
+                // Remove pet from favorites.
+                let newFavorites = favorites.filter(pet => pet !== id);
+                updateDoc(ref, {myFavorites: newFavorites});
+                console.log("pet removed from favorites");
+
+            } else {
+                // Add pet to favorites.
+                let newFavorites = [...favorites, id];
+                updateDoc(ref, {myFavorites: newFavorites});
+            }
+
+        })
+
+        console.log(`my favorite ${id}`);
+    }
+  
     useEffect( () => {
         const getPets = async function(){
             const data = await getDocs(c);
@@ -20,14 +64,6 @@ function Home() {
         getPets()
     }
     ,[])
-   /* const db = getFirestore();
-    const q = query(collection(db, "pets"), limitToLast(50));
-
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    console.log(doc.id, " => ", doc.data());
-    }); */
 
     return (
         <div>
@@ -40,7 +76,9 @@ function Home() {
             </section>
             <section className='petsBoard'>
             {pets2.map((pet) => {
-                return <AnimalCard key={pet.id} {...pet}></AnimalCard>
+                return (
+                    <AnimalCard handleFavorite={handleFavorite} key={pet.id} {...pet}></AnimalCard>
+                )
             })}
             </section>
             <Navbar/>
