@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useState } from 'react';
 
 
 
-const AnimalCard =({id, age, name, gender, photos, handleFavorite}) =>{
+const AnimalCard =({id, age, name, gender, photos, handleFavorite, isFavorite}) =>{
   let genderImg = `/assets/${gender}_black_24dp.svg`;
   let authToken = sessionStorage.getItem('Auth Token');
-  
+  let [favorite, setFavorite] = useState(isFavorite);
+  useEffect(() => {
+    setFavorite(isFavorite)
+  }, [])
+
     return (
       <section className='petsCard'>
     <Link  to={'pet/' + id} className='animalCard'>
@@ -24,7 +29,7 @@ const AnimalCard =({id, age, name, gender, photos, handleFavorite}) =>{
         </div>
       </article>
     </Link>
-    { authToken ? <button className='favorite' onClick={() => handleFavorite(id)}><FavoriteBorderIcon/></button> : null}
+    { authToken ? <button className='favorite' onClick={() => handleFavorite(id)}>{isFavorite === true ? <FavoriteIcon /> : <FavoriteBorderIcon/>} </button> : null}
     </section>
     )
     }
