@@ -1,19 +1,14 @@
 import React from 'react';
 import AnimalCard from '../articles';
 import { useState, useEffect } from 'react';
-import { collection, query, where, getDocs, limitToLast, getFirestore, orderBy, doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
-import { async } from '@firebase/util';
+import { collection,  getDocs,  getFirestore, doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
 import Navbar from './navbar'
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 
 function Home() {
     const [pets2, setPets] = useState([]);
     const [fav, setFav] = useState([]);
     const db = getFirestore();
     const c = collection(db, "pets")
-    const users = collection(db, "users");
-    let authToken = sessionStorage.getItem('Auth Token');
     let uid = sessionStorage.getItem('User Id');
     let ref = doc(db, 'users', uid);
 
@@ -72,7 +67,7 @@ function Home() {
         console.log(favorites);
         console.log(id);
         for (let i = 0; i < favorites.length; i++) {
-            let index = favorites.findIndex(item => item == id);
+            let index = favorites.findIndex(item => item === id);
             console.log(index);
             if (index !== -1) {
                 console.log("pet is favorite");

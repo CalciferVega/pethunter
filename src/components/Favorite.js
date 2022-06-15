@@ -1,17 +1,13 @@
 import AnimalCard from "../articles";
 import Navbar from "./navbar";
 import { useState, useEffect } from 'react';
-import { collection, query, where, deleteDoc, getFirestore, getDocs, getDoc, doc, updateDoc } from "firebase/firestore";
+import { getFirestore, getDoc, doc, updateDoc } from "firebase/firestore";
 
 const Favorite = () => {
   const [myPets, setPets] = useState([]);
-
   const db = getFirestore();
-  const c = collection(db, "pets");
   const uid = sessionStorage.getItem('User Id');
   const user = doc(db, "users", uid);
-
-  let authToken = sessionStorage.getItem('Auth Token');
 
   async function getFavorites() {
 
@@ -49,11 +45,8 @@ const Favorite = () => {
   }
 
   useEffect(() => {
-
-
     getFavorites();
-  }
-    , [])
+  }, [])
 
 
 
