@@ -9,6 +9,7 @@ import Petpost from './components/petPost'
 import Menu from './components/menu'
 import AddPet from './components/addPet'
 import { app } from "./firebaseConfig"
+import { lazy, Suspense } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import AdoptPage from './components/Adopt';
 import MyArticles from './components/myarticles';
@@ -32,6 +33,7 @@ function App() {
     <BrowserRouter>
 
       <Header></Header>
+      <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/pet/:id" element={<Petpost/>}  />
           <Route exact path='/registro' element={ <SignUpPage />} />
@@ -43,7 +45,7 @@ function App() {
           <Route  path='/adopt/:id' element={ <AdoptPage />} />
           <Route exact path="/" element={<Home/>}  />
         </Routes>
-        
+        </Suspense>
 
     </BrowserRouter>
 

@@ -1,63 +1,85 @@
 import AnimalCard from "../articles";
+import Navbar from "./navbar";
 import { useState, useEffect } from 'react';
-import { collection, query, where, deleteDoc, getFirestore, getDocs, getDoc, doc } from "firebase/firestore";
+import { collection, query, where, deleteDoc, getFirestore, getDocs, getDoc, doc, updateDoc } from "firebase/firestore";
 
 const Favorite = () => {
-    const [myPets, setPets] = useState([]);
+  const [myPets, setPets] = useState([]);
 
-    const db = getFirestore();
-    const c = collection(db, "pets");
-    const uid = sessionStorage.getItem('User Id');
-    const user = doc(db, "users", uid);
+  const db = getFirestore();
+  const c = collection(db, "pets");
+  const uid = sessionStorage.getItem('User Id');
+  const user = doc(db, "users", uid);
 
-    let authToken = sessionStorage.getItem('Auth Token');
-    
-    
-    useEffect( () => {
-        async function getFavorites() {
+  let authToken = sessionStorage.getItem('Auth Token');
 
-            await getDoc(user)
-                .then((response) => {
-                    let favorites = response?.data()?.myFavorites;
-                    favorites.forEach(async (pet) => {
-                        await getDoc(doc(db, "pets", pet))
-                            .then((response) => {
-                                let petData = {...response.data(), id: response.data().id};
-                                console.log(petData);
-                                setPets(oldArray => [...oldArray, petData]);
-                            });
-                    })
+  async function getFavorites() {
 
-                })
-        }
-    
-        getFavorites();
-    }
-    ,[])
+    await getDoc(user)
+      .then((response) => {
+        let favorites = response?.data()?.myFavorites;
 
-    const handleFavorite = async (id) => {
-        console.log(id);
-    }
+        favorites.forEach(async (pet) => {
+          await getDoc(doc(db, "pets", pet))
+            .then((response) => {
+              //setPets(response.docs.map((doc) => ({ ...doc.data(), id: doc.id, isFavorite: true })));
+
+              let petData = { ...response.data(), id: response.id, isFavorite: true };
+              setPets(oldArray => [...oldArray, petData]);
+            });
+        })
+
+      })
+  }
+
+  async function handleFavorite(id) {
+    let ref = doc(db, 'users', uid);
+    let currentFavs = myPets.filter(pet => pet.id !== id);
+    setPets(currentFavs);
+
+    await getDoc(ref)
+      .then((response) => {
+        let favorites = response?.data()?.myFavorites;
+        let newfavorites = favorites.filter(pet => pet !== id);
+        updateDoc(ref, { myFavorites: newfavorites });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  useEffect(() => {
 
 
-    return (
-        <div>
-            <h1>Guardados</h1>
-            <div className="articles">
+    getFavorites();
+  }
+    , [])
 
-            {myPets.map((pet) => {
-                return (
-                <section className='mypetscard' key={pet.id}>
-                    <AnimalCard handleFavorite={handleFavorite} key={pet.id} {...pet}></AnimalCard>
-                </section>
-                
-                )
 
-            })}
 
-            </div>
+
+
+  return (
+    <>
+      <section className='petsBoard'>
+        <h1>Tus Favoritos</h1>
+        <div className="articles">
+
+          {myPets.map((pet) => {
+            return (
+              <section className='mypetscard' key={pet.id}>
+                <AnimalCard handleFavorite={handleFavorite} isFavorite={pet.isFavorite} key={pet.id} {...pet}></AnimalCard>
+              </section>
+
+            )
+
+          })}
+
         </div>
-    );
+      </section>
+      <Navbar />
+    </>
+  );
 }
 
 export default Favorite;

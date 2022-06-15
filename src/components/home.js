@@ -95,14 +95,10 @@ function Home() {
 
     useEffect(() => {
         getFavoritePet();
-        
-        console.log(pets2);
-        console.log(fav);
     }, []);
 
     useEffect(() => {
         getPets();
-        console.log(pets2);
     }, [fav]);
 
     return (
