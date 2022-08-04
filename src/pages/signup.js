@@ -4,11 +4,9 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import Alert from '@mui/material/Alert';
 import Divider from '@mui/material/Divider';
-import { app } from "../firebaseConfig"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import Navbar from './navbar';
+import Navbar from '../components/navbar';
 
 const SignUpPage =({}) =>{
     let auth = getAuth();

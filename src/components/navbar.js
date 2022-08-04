@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 function Navbar() {
   const [pathname, setPath] = useState('/');
+  let authToken = sessionStorage.getItem('Auth Token');
+  let profileUrl = authToken ? '/profile' : '/registro';
 
   useEffect(() => {
     setPath(window.location.pathname);
@@ -21,7 +23,7 @@ function Navbar() {
       <Link to="/menu" className={`${isActive('/menu', pathname)}`}>
         <img src="/assets/menu.svg" />
       </Link>
-      <Link to="/registro" className={`${isActive('/registro', pathname)}`}>
+      <Link to={`${profileUrl}`} className={`${isActive('/registro', pathname)}`}>
         <img src="/assets/profile.svg" />
       </Link>
       <Link to="/favoritos" className={`${isActive('/favoritos', pathname)}`}>

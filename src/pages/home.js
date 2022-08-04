@@ -1,8 +1,10 @@
 import React from 'react';
-import AnimalCard from '../articles';
+import AnimalCard from '../components/articles';
 import { useState, useEffect } from 'react';
 import { collection,  getDocs,  getFirestore, doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
-import Navbar from './navbar'
+import Navbar from '../components/navbar'
+import Filter from '../components/Filter'
+import updateFavorites from '../services/updateFavorites';
 
 function Home() {
     const [pets2, setPets] = useState([]);
@@ -14,39 +16,14 @@ function Home() {
 
 
     async function handleFavorite(id) {
-        let ref = doc(db, 'users', uid);
-
-        await getDoc(ref)
-            .then((response) => {
-                let favorites = response?.data()?.myFavorites;
-
-
-                if (favorites === undefined) {
-                    let firstFavorite = { myFavorites: [id] };
-
-                    setDoc(ref, firstFavorite)
-
-                }
-
-                if (favorites?.find(pet => pet === id)) {
-
-                    // Remove pet from favorites.
-                    let newFavorites = favorites.filter(pet => pet !== id);
-                    let newFav = fav.filter(pet => pet !== id);
-                    setFav(newFav);
-                    updateDoc(ref, { myFavorites: newFavorites });
-                    console.log("pet removed from favorites");
-
-                } else {
-                    // Add pet to favorites.
-                    let newFavorites = [...favorites, id];
-                    setFav([...fav, id]);
-                    updateDoc(ref, { myFavorites: newFavorites });
-                }
-                console.log(pets2)
-            })
-
-        console.log(`my favorite ${id}`);
+        if (fav.find(pet => pet === id)) {
+            let newFav = fav.filter(pet => pet !== id);
+            setFav(newFav);
+        } else {
+            let newFav = [...fav, id];
+            setFav(newFav);
+        }
+        updateFavorites(id);
     }
 
     async function getFavoritePet() {
@@ -64,13 +41,10 @@ function Home() {
 
     const isFavoritePet = (id) => {
         let favorites = fav;
-        console.log(favorites);
-        console.log(id);
+
         for (let i = 0; i < favorites.length; i++) {
             let index = favorites.findIndex(item => item === id);
-            console.log(index);
             if (index !== -1) {
-                console.log("pet is favorite");
                 return true;
             } else {
                 return false;
@@ -79,13 +53,17 @@ function Home() {
     }
 
     async function getPets() {
+        let savedPets = JSON.parse(sessionStorage.getItem('PETS')) || [];
+        
+        setPets(savedPets);
+        
         await getDocs(c)
             .then((response) => {
                 setPets(response.docs.map((doc) => ({ ...doc.data(), id: doc.id, isFavorite: isFavoritePet(doc.id) })));
-                console.log(pets2);
+                sessionStorage.setItem('PETS', JSON.stringify(response.docs.map((doc) => ({ ...doc.data(), id: doc.id, isFavorite: isFavoritePet(doc.id) }))));
+            }).catch(error => {
+                console.log(error);
             })
-
-
     }
 
     useEffect(() => {
@@ -97,14 +75,9 @@ function Home() {
     }, [fav]);
 
     return (
-     <div>
-            <section className='animalFilter'>
-                <button className='active' dataPet="all">Todos</button>
-                <button dataPet="cat">Gatos</button>
-                <button dataPet="dog">Perros</button>
-                <button dataPet="rabbit">Conejos</button>
-                <button dataPet="hamster">Hamster</button>
-            </section>
+    <>
+     <div className='home-post'>
+        <Filter></Filter>
             <section className='petsBoard'>
                 {pets2.map((pet) => {
                     return (
@@ -112,8 +85,9 @@ function Home() {
                     )
                 })}
             </section>
-            <Navbar />
         </div>
+        <Navbar />
+        </>
     )
 }
 

@@ -1,6 +1,6 @@
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { useState, useEffect } from 'react';
-import AnimalCard from '../articles';
+import AnimalCard from '../components/articles';
 
 function GetAllPets() {
     const [pets, setPets] = useState([]);

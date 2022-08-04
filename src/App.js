@@ -1,17 +1,17 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Header from './header';
-import Home from './components/home'
-import SignUpPage from './components/signup'
-import Petpost from './components/petPost'
-import Menu from './components/menu'
-import AddPet from './components/addPet'
+import Header from './components/header';
+import Home from './pages/home'
+import SignUpPage from './pages/signup'
+import Petpost from './pages/petPost'
+import Menu from './pages/menu'
+import AddPet from './pages/addPet'
 import { Suspense } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import AdoptPage from './components/Adopt';
-import MyArticles from './components/myarticles';
-import LoginPage from './components/login';
-import Favorite from './components/Favorite';
+import AdoptPage from './pages/Adopt';
+import MyArticles from './pages/myarticles';
+import LoginPage from './pages/login';
+import Favorite from './pages/Favorite';
 
 function App() {
   let auth = getAuth();

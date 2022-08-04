@@ -286,6 +286,18 @@ button.delete {
     position: relative;
     top: 2px;
 }
+@media (min-width: 768px) {
+  .css-1p5q5e5-MuiStack-root{
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+  .home-post{
+    width: 1024px;
+    height: auto;
+    margin-bottom: 1rem;
+    margin: 0 auto;
+  }
+}
 @media (max-width: 768px) {
   .animalCard figure {
     height: 250px;

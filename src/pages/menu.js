@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import LoginPage from './login'
 import AddPet from './addPet'
-import Navbar from './navbar'
+import Navbar from '../components/navbar'
 import MyArticles from './myarticles'
 import { Button } from '@mui/material';
 import { app } from "../firebaseConfig"

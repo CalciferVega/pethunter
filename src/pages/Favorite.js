@@ -1,5 +1,5 @@
-import AnimalCard from "../articles";
-import Navbar from "./navbar";
+import AnimalCard from "../components/articles";
+import Navbar from "../components/navbar";
 import { useState, useEffect } from 'react';
 import { getFirestore, getDoc, doc, updateDoc } from "firebase/firestore";
 

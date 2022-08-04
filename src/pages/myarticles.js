@@ -1,4 +1,4 @@
-import AnimalCard from "../articles";
+import AnimalCard from "../components/articles";
 import { useState, useEffect } from 'react';
 import { collection, query, where, deleteDoc, getFirestore, getDocs, doc } from "firebase/firestore";
 
